@@ -2,13 +2,22 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 import logo from "../../assests/images/youtube_logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowSidebar } from "../../redux/slices/appControlsSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const showSidebar = useSelector((state) => state.appControls.showSidebar);
+
+  const sidebarClickHandler = () => {
+    dispatch(setShowSidebar(!showSidebar));
+  };
+
   return (
     <div className="flex bg-black text-white justify-between items-center">
       <div className="flex items-center">
         <div className="m-2 pl-4">
-          <button>
+          <button onClick={sidebarClickHandler}>
             <FontAwesomeIcon icon={icon({ name: "bars" })} />
           </button>
         </div>
