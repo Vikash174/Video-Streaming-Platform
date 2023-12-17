@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { POPULAR_VIDEOS_URL, YOUTUBE_API_KEY } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addPopularVideos } from "../redux/slices/videoSlice";
+import { setShowSidebar } from "../redux/slices/appControlsSlice";
 
 const useAAddPopularMoviesToStore = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const useAAddPopularMoviesToStore = () => {
 
   useEffect(() => {
     addPopularMoviesToReduxStore();
+    dispatch(setShowSidebar(true));
   }, []);
 };
 

@@ -21,6 +21,7 @@ const Header = () => {
             <FontAwesomeIcon icon={icon({ name: "bars" })} />
           </button>
         </div>
+
         <div>
           <img
             className="w-40 object-cover bg-center"

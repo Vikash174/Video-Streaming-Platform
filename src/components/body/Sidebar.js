@@ -9,8 +9,8 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="bg-black text-white p-2  text-sm w-44 ">
-      <div>
+    <div className="bg-black text-white p-2 text-sm">
+      <div className="w-52">
         <ul>
           <li>
             <span>Home</span>
@@ -21,62 +21,21 @@ const Sidebar = () => {
           <li>
             <span>Subscription</span>
           </li>
-          <li>
-            <span>YouTube Music</span>
-          </li>
         </ul>
       </div>
       <div>
-        <span>{"You >"}</span>
         <ul>
           <li>
-            <span>Your channel</span>
+            <span>You</span>
           </li>
           <li>
             <span>History</span>
           </li>
-          <li>
-            <span>Your videos</span>
-          </li>
-          <li>
-            <span>Watch Later</span>
-          </li>
-          <li>
-            <span>Downloads</span>
-          </li>
-          <li>
-            <span>Show more</span>
-          </li>
         </ul>
       </div>
       <div>
-        <span>Subscriptions</span>
-        <ul>
-          <li>
-            <span>Live Shyam Bhajan</span>
-          </li>
-          <li>
-            <span>AbbyViral</span>
-          </li>
-          <li>
-            <span>Aditya Verma</span>
-          </li>
-          <li>
-            <span>Akshay Saini</span>
-          </li>
-          <li>
-            <span>Ali Abdaal</span>
-          </li>
-          <li>
-            <span>Anand Pandey</span>
-          </li>
-          <li>
-            <span>Android Developer</span>
-          </li>
-          <li>
-            <span>Show 88 more</span>
-          </li>
-        </ul>
+        <span>Sign in to like videos, comment, and subscribe</span>
+        <button>Sign in</button>
       </div>
       <div>
         <span>Explore</span>
