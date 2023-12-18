@@ -2,7 +2,7 @@ import React from "react";
 
 const NavList = () => {
   return (
-    <div className="bg-black text-white ">
+    <div className="bg-black text-white fixed p-4 w-[100vw] -mt-4 text-sm md:text-lg overflow-x-scroll scrollbar-hide">
       <ul className="flex flex-row flex-nowrap gap-5 items-center ">
         <li className="rounded-md px-2 py-1  bg-gray-800 w-auto min-w-max hover:cursor-pointer hover:opacity-80">
           <span className="">All</span>

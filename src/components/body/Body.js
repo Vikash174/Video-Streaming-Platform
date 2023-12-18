@@ -8,7 +8,7 @@ import VideoPlayingPage from "../video_playing_page/VideoPlayingPage";
 
 const Body = () => {
   return (
-    <div className="flex ">
+    <div className="flex bg-black">
       <Sidebar />
 
       <Outlet />

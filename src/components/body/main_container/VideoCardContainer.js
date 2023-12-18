@@ -10,15 +10,13 @@ const VideoCardContainer = () => {
   const popularVideosList = useSelector((state) => state.video.popularVideos);
 
   return (
-    <div className="flex flex-wrap bg-black text-white">
+    <div className="flex flex-wrap bg-black text-white mt-10 items-center">
       {popularVideosList &&
-        popularVideosList.map((video) => {
-          return (
-            <Link key={video.id} to={`/watch?v=${video.id}`}>
-              <VideoCard video={video} />
-            </Link>
-          );
-        })}
+        popularVideosList.map((video) => (
+          <Link key={video.id} to={`/watch?v=${video.id}`} className="">
+            <VideoCard video={video} />
+          </Link>
+        ))}
     </div>
   );
 };

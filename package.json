@@ -45,6 +45,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "date-fns": "^2.30.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.3.6"
   },
   "babelMacros": {
