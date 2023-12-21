@@ -85,4 +85,13 @@ const VideoCard = (props) => {
   );
 };
 
+export const AdVideoCard = (props) => {
+  const { video } = props;
+  return (
+    <div className="p-1 m-1 border border-red-600">
+      <VideoCard video={video} />
+    </div>
+  );
+};
+
 export default VideoCard;
