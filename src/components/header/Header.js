@@ -4,14 +4,20 @@ import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 import logo from "../../assests/images/youtube_logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowSidebar } from "../../redux/slices/appControlsSlice";
-import { Link } from "react-router-dom";
 import { SEARCH_SUGGESTIONS_API } from "../../utils/constant";
+import { Link, useNavigate } from "react-router-dom";
+// import SpeechRecognition, {
+//   useSpeechRecognition,
+// } from "react-speech-recognition";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchSuggestion, setShowSearchSuggestion] = useState(false);
   const [searchQueryResult, setSearchQueryResult] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const showSidebar = useSelector((state) => state.appControls.showSidebar);
+  // const { transcript, listening, resetTranscript } = useSpeechRecognition();
 
   useEffect(() => {
     // API Call
@@ -33,6 +39,14 @@ const Header = () => {
     dispatch(setShowSidebar(!showSidebar));
   };
 
+  const micBtnHandler = () => {
+    // if (listening) {
+    //   resetTranscript();
+    //   SpeechRecognition.stopListening();
+    // } else {
+    //   SpeechRecognition.startListening({ continuous: true });
+    // }
+  };
   return (
     <>
       <div className="flex bg-black text-white justify-between items-center fixed w-full">
@@ -58,11 +72,16 @@ const Header = () => {
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSearchSuggestion(true)}
+            onBlur={() => setShowSearchSuggestion(false)}
           />
           <button className="bg-[#ffffff33] px-2 py-1 md:py-2 md:px-4  md:rounded-r-full border border-[#ffffff33]">
             <FontAwesomeIcon icon={icon({ name: "magnifying-glass" })} />
           </button>
-          <button className="bg-[#ffffff33] py-2 px-3 mx-2  rounded-[50%]">
+          <button
+            className="bg-[#ffffff33] py-2 px-3 mx-2  rounded-[50%] "
+            onClick={micBtnHandler}
+          >
             <FontAwesomeIcon icon={icon({ name: "microphone" })} />
           </button>
         </div>
@@ -80,11 +99,16 @@ const Header = () => {
         </div>
       </div>
 
-      {searchQueryResult && (
-        <div className="bg-black fixed  md:w-96 z-10 top-20 left-[600px] text-white">
+      {showSearchSuggestion && (
+        <div className="bg-black fixed  md:w-[450px] z-10 top-20 mx-auto left-0 right-0 text-white">
           {searchQueryResult.map((searchQuery) => {
             return (
-              <div className="p-1 m-1 cursor-default hover:bg-gray-500">
+              <div
+                className="p-1 m-1 cursor-default hover:bg-gray-500"
+                onMouseDown={() => {
+                  navigate(`/results?search_query=${searchQuery}`);
+                }}
+              >
                 <FontAwesomeIcon icon={icon({ name: "magnifying-glass" })} />
                 <span className="ml-2">{searchQuery}</span>
               </div>

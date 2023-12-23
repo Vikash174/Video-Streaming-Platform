@@ -1,7 +1,7 @@
 import React from "react";
 import useAAddPopularMoviesToStore from "../../../custom_hooks/useAddPopularMoviesToStore";
 import { useSelector } from "react-redux";
-import VideoCard, { AdVideoCard } from "./VideoCard";
+import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 
 const VideoCardContainer = () => {
@@ -10,11 +10,10 @@ const VideoCardContainer = () => {
   const popularVideosList = useSelector((state) => state.video.popularVideos);
 
   return (
-    <div className="flex flex-wrap bg-black text-white mt-10 items-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 p-4 mt-12 ">
       {popularVideosList &&
-        popularVideosList.map((video, index) => (
+        popularVideosList.map((video) => (
           <>
-            {index === 0 && <AdVideoCard video={video} />}
             <Link key={video.id} to={`/watch?v=${video.id}`} className="">
               <VideoCard video={video} />
             </Link>

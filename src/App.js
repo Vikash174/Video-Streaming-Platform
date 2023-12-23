@@ -4,12 +4,18 @@ import Body from "./components/body/Body";
 import Header from "./components/header/Header";
 import MainContainer from "./components/body/main_container/MainContainer";
 import VideoPlayingPage from "./components/video_playing_page/VideoPlayingPage";
+import SearchResultContainer from "./components/body/main_container/SearchResultContainer";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Body />,
+      element: (
+        <>
+          <Header />
+          <Body />
+        </>
+      ),
       children: [
         {
           path: "/",
@@ -19,16 +25,16 @@ function App() {
           path: "/watch",
           element: <VideoPlayingPage />,
         },
+        {
+          path: "/results",
+          element: <SearchResultContainer />,
+        },
       ],
-    },
-    {
-      path: "/watch",
     },
   ]);
 
   return (
     <div className="App">
-      <Header />
       <RouterProvider router={router} />
     </div>
   );

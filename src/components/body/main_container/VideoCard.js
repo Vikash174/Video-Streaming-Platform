@@ -1,6 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
 import React, { useEffect, useState } from "react";
-import { YOUTUBE_API_KEY } from "../../../utils/constant";
+import { CHANNEL_DATA_URL, YOUTUBE_API_KEY } from "../../../utils/constant";
 
 const VideoCard = (props) => {
   const { video } = props;
@@ -32,7 +32,7 @@ const VideoCard = (props) => {
   }, [uploadTime]);
 
   const fetchChannelData = async () => {
-    const url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${video.snippet.channelId}&key=${YOUTUBE_API_KEY}`;
+    const url = `${CHANNEL_DATA_URL}${video.snippet.channelId}&key=${YOUTUBE_API_KEY}`;
 
     const response = await fetch(url);
     const jsonRes = await response.json();
@@ -53,11 +53,10 @@ const VideoCard = (props) => {
   };
 
   return (
-    <div className="w-full sm:w-52 md:w-60 lg:w-80 xl:w-[340px] 2xl:w-96 p-2 hover:cursor-pointer">
-      {/* Adjust the width based on screen size: full width on small screens, half on medium, one-third on large, and one-fourth on extra-large */}
+    <div className="max-w-md mx-auto  bg-black text-white overflow-hidden shadow-md hover:shadow-lg transition duration-300">
       <div>
         <img
-          className="w-full h-auto max-h-[190px] rounded-lg bg-contain object-cover"
+          className="w-full h-full object-fill rounded-lg"
           src={videoThumbnailURL}
           alt="video thumbnail"
         />

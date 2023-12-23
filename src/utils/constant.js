@@ -8,3 +8,9 @@ export const POPULAR_VIDEOS_URL =
 
 export const SEARCH_SUGGESTIONS_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const CHANNEL_DATA_URL =
+  "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=";
+
+export const SEARCH_QUERY_URL =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=";
