@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { SEARCH_QUERY_URL, YOUTUBE_API_KEY } from "../../../utils/constant";
+import SearchedVideoCard from "./SearchedVideoCard";
+import SearchedChannelCard from "./SearchedChannelCard";
 
 const SearchResultContainer = () => {
   const [searchParam] = useSearchParams();
@@ -21,10 +23,26 @@ const SearchResultContainer = () => {
     const jsonRes = await res.json();
 
     setSearchQueryData(jsonRes.items);
-    console.log(jsonRes.items);
   };
 
-  return <div>SearchResultContainer</div>;
+  return (
+    <div className="text-white h-full flex flex-col p-2 m-2 ml-96 mt-20">
+      {searchQueryData &&
+        searchQueryData.map((searchData) => {
+          if (searchData?.id?.kind === "youtube#video") {
+            return (
+              <Link
+                key={searchData.id.videoId}
+                to={`/watch?v=${searchData.id.videoId}`}
+                className=""
+              >
+                <SearchedVideoCard videoData={searchData} />
+              </Link>
+            );
+          }
+        })}
+    </div>
+  );
 };
 
 export default SearchResultContainer;
