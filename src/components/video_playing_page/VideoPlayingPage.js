@@ -4,10 +4,11 @@ import { useSearchParams } from "react-router-dom";
 import { setShowSidebar } from "../../redux/slices/appControlsSlice";
 import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
-import CommentsContainer from "./CommentsContainer";
+
 import useFetchVideoComments from "../../custom_hooks/useFetchVideoComments";
 import useFetchChannelData from "../../custom_hooks/useFetchChannelData";
 import useFetchVideoInformation from "../../custom_hooks/useFetchVideoInformation";
+import CommentSection from "./CommentsSection";
 
 const VideoPlayingPage = () => {
   const [searchParams] = useSearchParams();
@@ -24,15 +25,17 @@ const VideoPlayingPage = () => {
   // const { isLoading, apiData, serverError } = useFetchChannelData();
 
   return (
-    <div className="lg:flex h-[100vh] text-white">
+    <div className="lg:flex w-screen h-[100vh] text-white bg-black flex flex-col scrollbar-hide">
       <div className="lg:w-3/4">
         <VideoPlayer />
       </div>
-      <div className="lg:w-1/4">
-        <VideoInfo />
+      <div>
+        {!isLoadingVideoInformationApiData && (
+          <VideoInfo videoInfo={videoInformationApiData} />
+        )}
       </div>
       <div>
-        <CommentsContainer />
+        {!isLoadingVideoComments && <CommentSection comments={videoComments} />}
       </div>
     </div>
   );
