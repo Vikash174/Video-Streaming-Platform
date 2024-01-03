@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { SEARCH_QUERY_URL, YOUTUBE_API_KEY } from "../../../utils/constant";
 import SearchedVideoCard from "./SearchedVideoCard";
-import SearchedChannelCard from "./SearchedChannelCard";
 
 const SearchResultContainer = () => {
   const [searchParam] = useSearchParams();
@@ -10,7 +9,8 @@ const SearchResultContainer = () => {
 
   useEffect(() => {
     fetchSearchQueryResults();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParam.get("search_query")]);
 
   const fetchSearchQueryResults = async () => {
     const url =
@@ -21,6 +21,7 @@ const SearchResultContainer = () => {
     const res = await fetch(url);
 
     const jsonRes = await res.json();
+    console.log(jsonRes);
 
     setSearchQueryData(jsonRes.items);
   };

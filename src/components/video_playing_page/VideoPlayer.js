@@ -15,9 +15,11 @@ const VideoPlayer = ({ videoUrl }) => {
   return (
     <div className="aspect-w-16 aspect-h-9">
       <iframe
-        width="700px"
-        height="600px"
-        src={`https://www.youtube.com/embed/${searchParams.get("v")}`}
+        width="1490px"
+        height="900px"
+        src={`https://www.youtube.com/embed/${searchParams.get(
+          "v"
+        )}?autoplay=1`}
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

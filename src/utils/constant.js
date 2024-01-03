@@ -14,3 +14,9 @@ export const CHANNEL_DATA_URL =
 
 export const SEARCH_QUERY_URL =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=";
+
+export const COMMENTS_URL =
+  "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=";
+
+export const VIDEO_URL =
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=";

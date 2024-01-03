@@ -7,7 +7,7 @@ const MainContainer = () => {
   const showSidebar = useSelector((state) => state.appControls.showSidebar);
 
   return (
-    <div className={showSidebar ? "lg:ml-64 mt-[85px]" : "sm:ml-5 mt-[85px] "}>
+    <div className={showSidebar ? "md:ml-64 mt-[85px]" : "sm:ml-5 mt-[85px] "}>
       <NavList />
       <VideoCardContainer />
     </div>

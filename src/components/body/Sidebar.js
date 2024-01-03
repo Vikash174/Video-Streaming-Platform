@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -11,7 +10,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="bg-black text-white p-2 text-sm fixed top-20 w-60 h-[95vh] text-[1rem] overflow-x-scroll scrollbar-hide hidden lg:block">
+    <div className="bg-black text-white p-2 text-sm fixed top-20 w-60 h-[95vh] text-[1rem] overflow-x-scroll scrollbar-hide hidden md:block">
       <div className="border-b border-gray-400 p-5">
         <ul className="">
           <Link to={"/"}>

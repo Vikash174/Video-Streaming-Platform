@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setShowSidebar } from "../../redux/slices/appControlsSlice";
 import { SEARCH_SUGGESTIONS_API } from "../../utils/constant";
 import { Link, useNavigate } from "react-router-dom";
-// import SpeechRecognition, {
-//   useSpeechRecognition,
-// } from "react-speech-recognition";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,7 +17,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const showSidebar = useSelector((state) => state.appControls.showSidebar);
-  // const { transcript, listening, resetTranscript } = useSpeechRecognition();
+  const { transcript, listening, resetTranscript } = useSpeechRecognition();
 
   useEffect(() => {
     // API Call
@@ -40,16 +40,16 @@ const Header = () => {
   };
 
   const micBtnHandler = () => {
-    // if (listening) {
-    //   resetTranscript();
-    //   SpeechRecognition.stopListening();
-    // } else {
-    //   SpeechRecognition.startListening({ continuous: true });
-    // }
+    if (listening) {
+      resetTranscript();
+      SpeechRecognition.stopListening();
+    } else {
+      SpeechRecognition.startListening({ continuous: true });
+    }
   };
   return (
     <>
-      <div className="flex bg-black text-white justify-between items-center fixed w-full">
+      <div className="flex bg-black text-white justify-between items-center fixed w-full h-20">
         <div className="flex items-center">
           <div className="m-2 pl-4 hidden md:block">
             <button onClick={sidebarClickHandler}>
@@ -67,7 +67,7 @@ const Header = () => {
         </div>
         <div className="flex">
           <input
-            className="p-2 rounded-l-full bg-black border border-[#ffffff33] hidden md:block md:w-96"
+            className="p-2 rounded-l-full bg-black border border-[#ffffff33] md:w-96"
             type="text"
             placeholder="Search"
             value={searchQuery}
@@ -75,7 +75,7 @@ const Header = () => {
             onFocus={() => setShowSearchSuggestion(true)}
             onBlur={() => setShowSearchSuggestion(false)}
           />
-          <button className="bg-[#ffffff33] px-2 py-1 md:py-2 md:px-4  md:rounded-r-full border border-[#ffffff33]">
+          <button className="bg-[#ffffff33] px-2 py-1 md:py-2 md:px-4 rounded-r-full border border-[#ffffff33]">
             <FontAwesomeIcon icon={icon({ name: "magnifying-glass" })} />
           </button>
           <button
@@ -87,20 +87,13 @@ const Header = () => {
         </div>
         <div className="hidden md:block">
           <button className="mx-5">
-            <FontAwesomeIcon icon={icon({ name: "video" })} />
-          </button>
-          <button className="mx-5">
-            <FontAwesomeIcon icon={icon({ name: "bell" })} />
-          </button>
-
-          <button className="mx-5">
             <FontAwesomeIcon icon={icon({ name: "user" })} />
           </button>
         </div>
       </div>
 
       {showSearchSuggestion && (
-        <div className="bg-black fixed  md:w-[450px] z-10 top-20 mx-auto left-0 right-0 text-white">
+        <div className="bg-black fixed  md:w-[450px] z-10 top-12 mx-auto left-0 right-0 text-white">
           {searchQueryResult.map((searchQuery) => {
             return (
               <div
@@ -110,7 +103,7 @@ const Header = () => {
                 }}
               >
                 <FontAwesomeIcon icon={icon({ name: "magnifying-glass" })} />
-                <span className="ml-2">{searchQuery}</span>
+                <span className="ml-2 text-sm">{searchQuery}</span>
               </div>
             );
           })}
