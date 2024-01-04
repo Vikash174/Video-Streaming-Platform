@@ -1,7 +1,10 @@
-import { formatDistanceToNow } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useFetchChannelData from "../../../custom_hooks/useFetchChannelData";
 import VideoCardShimmer from "./VideoCardShimmer";
+import {
+  converNumberIntoWords,
+  converUploadTimeIntoTimeAgo,
+} from "../../../utils/utilitiesFunctions";
 
 const VideoCard = (props) => {
   const { video } = props;
@@ -15,38 +18,10 @@ const VideoCard = (props) => {
       : video.snippet.title;
 
   const channelName = video.snippet.channelTitle;
-  const videoViews = video.statistics.viewCount;
-  const uploadTime = video.snippet.publishedAt;
-
-  const [timeAgo, setTimeAgo] = useState("");
+  const videoViews = converNumberIntoWords(video.statistics.viewCount);
+  const uploadTime = converUploadTimeIntoTimeAgo(video.snippet.publishedAt);
 
   const { isLoading, apiData } = useFetchChannelData(video.snippet.channelId);
-
-  useEffect(() => {
-    const date = new Date(uploadTime);
-    const intervalId = setInterval(() => {
-      const newTimeAgo = formatDistanceToNow(date, {
-        addSuffix: true,
-        includeSeconds: true,
-      });
-
-      setTimeAgo(newTimeAgo);
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [uploadTime]);
-
-  const formateNumber = (num) => {
-    if (num < 1000) {
-      return num;
-    } else if (num < 1000000) {
-      return (num / 1000).toFixed(1) + "K";
-    } else if (num < 1000000000) {
-      return (num / 1000000).toFixed(1) + "M";
-    } else {
-      return (num / 1000000000).toFixed(1) + "B";
-    }
-  };
 
   return isLoading === true ? (
     <VideoCardShimmer />
@@ -73,7 +48,7 @@ const VideoCard = (props) => {
           <p className="text-sm lg:text-lg">{videoTitle.substring(0, 60)}</p>
           <p className="text-sm text-gray-400">{channelName}</p>
           <p className="text-sm text-gray-400">
-            {formateNumber(videoViews) + " views . " + timeAgo}
+            {videoViews + " views . " + uploadTime}
           </p>
         </div>
       </div>

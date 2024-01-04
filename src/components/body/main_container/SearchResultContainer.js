@@ -21,7 +21,6 @@ const SearchResultContainer = () => {
     const res = await fetch(url);
 
     const jsonRes = await res.json();
-    console.log(jsonRes);
 
     setSearchQueryData(jsonRes.items);
   };
