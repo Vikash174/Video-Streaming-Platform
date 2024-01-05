@@ -72,20 +72,22 @@ const VideoInfo = (props) => {
       <div>
         <h1 className="text-xl font-bold">{title}</h1>
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex gap-2 items-center">
-          <div>
-            <img
-              className="rounded-full w-10"
-              src={channelLogo}
-              alt="channel logo"
-            />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-semibold">{channelName}</span>
-            <span className="text-gray-300">
-              {subscribersCount} subscribers
-            </span>
+      <div className="flex flex-col items-start lg:items-center justify-between lg:flex-row gap-2 w-screen">
+        <div className="flex gap-2 items-center justify-between w-[90%]  lg:justify-start lg:w-fit">
+          <div className="flex items-center gap-2">
+            <div>
+              <img
+                className="rounded-full w-10"
+                src={channelLogo}
+                alt="channel logo"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-semibold">{channelName}</span>
+              <span className="text-gray-300">
+                {subscribersCount} subscribers
+              </span>
+            </div>
           </div>
           <div>
             <button className="rounded-l-full rounded-r-full p-2 bg-white text-black font-semibold">
@@ -93,17 +95,17 @@ const VideoInfo = (props) => {
             </button>
           </div>
         </div>
-        <div className="flex gap-5 items-center">
+        <div className="flex gap-5 items-center w-[100%]  overflow-scroll scrollbar-hide">
           <div className="flex">
             <div
-              className="flex bg-gray-700 p-2 rounded-l-full hover:cursor-pointer"
+              className="flex bg-gray-700 p-2 rounded-l-full hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("like")}
             >
               <img src={like} alt="" />
               <button className="ml-1">{videoLikeCount}</button>
             </div>
             <div
-              className="flex bg-gray-700  p-2 rounded-r-full border-l hover:cursor-pointer "
+              className="flex bg-gray-700  p-2 rounded-r-full border-l hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("dislike")}
             >
               <img src={dislike} alt="" />
@@ -111,7 +113,7 @@ const VideoInfo = (props) => {
           </div>
           <div>
             <div
-              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer"
+              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("Share")}
             >
               <img src={share} alt="" />
@@ -120,7 +122,7 @@ const VideoInfo = (props) => {
           </div>
           <div>
             <div
-              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer"
+              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("Download")}
             >
               <img src={download} alt="" />
@@ -129,7 +131,7 @@ const VideoInfo = (props) => {
           </div>
           <div>
             <div
-              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer"
+              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("Clip")}
             >
               <img src={clip} alt="" />
@@ -138,7 +140,7 @@ const VideoInfo = (props) => {
           </div>
           <div>
             <div
-              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer"
+              className="flex bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("Save")}
             >
               <img src={save} alt="" />
@@ -147,7 +149,7 @@ const VideoInfo = (props) => {
           </div>
           <div>
             <button
-              className="bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer"
+              className="bg-gray-700 m-1 p-2 rounded-l-full rounded-r-full hover:cursor-pointer min-w-max"
               onMouseOver={handleMouseOver("More")}
             >
               ---

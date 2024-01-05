@@ -13,7 +13,7 @@ const VideoPlayingPage = () => {
     useFetchVideoInformation(videoId);
 
   return (
-    <div className="lg:flex w-screen h-[100vh] text-white bg-black flex flex-col scrollbar-hide">
+    <div className="lg:flex w-screen h-[100vh]  text-white bg-black flex flex-col scrollbar-hide">
       <div className="lg:w-3/4">
         <VideoPlayer />
       </div>

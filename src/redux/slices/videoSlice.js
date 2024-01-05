@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  popularVideos: null,
+  popularVideos: [],
+  pageToken: null,
+  pageCount: 1,
 };
 
 const videoSlice = createSlice({
@@ -9,11 +11,18 @@ const videoSlice = createSlice({
   initialState,
   reducers: {
     addPopularVideos: (state, action) => {
-      state.popularVideos = action.payload;
+      action.payload.map((video) => state.popularVideos.push(video));
+    },
+    addPageToken: (state, action) => {
+      state.pageToken = action.payload;
+    },
+    increasePageCount: (state) => {
+      state.pageCount++;
     },
   },
 });
 
-export const { addPopularVideos } = videoSlice.actions;
+export const { addPopularVideos, addPageToken, increasePageCount } =
+  videoSlice.actions;
 
 export default videoSlice.reducer;
