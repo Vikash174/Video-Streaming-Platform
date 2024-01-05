@@ -29,10 +29,14 @@ const Header = () => {
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
-    const data = await fetch(SEARCH_SUGGESTIONS_API + searchQuery);
-    const jsongData = await data.json();
+    try {
+      const data = await fetch(SEARCH_SUGGESTIONS_API + searchQuery);
+      const jsongData = await data.json();
 
-    setSearchQueryResult(jsongData[1]);
+      setSearchQueryResult(jsongData[1]);
+    } catch (error) {
+      console.error("Error while fetching the data");
+    }
   };
 
   const sidebarClickHandler = () => {

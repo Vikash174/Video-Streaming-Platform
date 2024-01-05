@@ -33,8 +33,6 @@ const VideoInfo = (props) => {
     ? ""
     : apiData?.items[0]?.snippet?.thumbnails?.default?.url;
 
-  // console.log(apiData);
-
   const handleMouseOver = (text) => (e) => {
     // Create and position the tooltip
     const tooltip = document.createElement("div");
