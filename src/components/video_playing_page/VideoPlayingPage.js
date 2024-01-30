@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
 import useFetchVideoInformation from "../../custom_hooks/useFetchVideoInformation";
+import { useSelector } from "react-redux";
+import VideoCardContainer from "../body/main_container/VideoCardContainer";
 
 const VideoPlayingPage = () => {
   const [searchParams] = useSearchParams();
@@ -13,14 +15,16 @@ const VideoPlayingPage = () => {
     useFetchVideoInformation(videoId);
 
   return (
-    <div className="lg:flex w-screen h-[100vh]  text-white bg-black flex flex-col scrollbar-hide">
-      <div className="lg:w-3/4">
-        <VideoPlayer />
-      </div>
-      <div>
-        {!isLoadingVideoInformationApiData && (
-          <VideoInfo videoInfo={videoInformationApiData} />
-        )}
+    <div className=" h-[100vh] w-screen  text-white bg-black scrollbar-hide flex">
+      <div className="">
+        <div className="">
+          <VideoPlayer />
+        </div>
+        <div>
+          {!isLoadingVideoInformationApiData && (
+            <VideoInfo videoInfo={videoInformationApiData} />
+          )}
+        </div>
       </div>
     </div>
   );

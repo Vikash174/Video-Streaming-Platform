@@ -62,11 +62,13 @@ const Header = () => {
           </div>
 
           <div>
-            <img
-              className="w-40 object-cover bg-center"
-              src={logo}
-              alt="youtube logo"
-            />
+            <Link to={"/"}>
+              <img
+                className="w-40 object-cover bg-center"
+                src={logo}
+                alt="youtube logo"
+              />
+            </Link>
           </div>
         </div>
         <div className="flex">

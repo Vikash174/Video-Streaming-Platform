@@ -12,9 +12,15 @@ const VideoCard = (props) => {
     video?.snippet?.thumbnails?.maxres?.url === undefined
       ? video?.snippet?.thumbnails?.standard?.url
       : video?.snippet?.thumbnails?.maxres?.url;
+  console.log(
+    video.snippet.title.length,
+    video.snippet.title.length > 60
+      ? `${video.snippet.title.substring(0, 60)}......`
+      : video.snippet.title
+  );
   const videoTitle =
     video.snippet.title.length > 60
-      ? video.snippet.title.substring(0, 60) + "......"
+      ? `${video.snippet.title.substring(0, 60)}......`
       : video.snippet.title;
 
   const channelName = video.snippet.channelTitle;
@@ -45,7 +51,7 @@ const VideoCard = (props) => {
           />
         </div>
         <div>
-          <p className="text-sm lg:text-lg">{videoTitle.substring(0, 60)}</p>
+          <p className="text-sm lg:text-lg">{videoTitle}</p>
           <p className="text-sm text-gray-400">{channelName}</p>
           <p className="text-sm text-gray-400">
             {videoViews + " views . " + uploadTime}

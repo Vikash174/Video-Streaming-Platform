@@ -1,5 +1,5 @@
 // components/VideoInfo.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { clip, dislike, download, like, save, share } from "../../assests";
 import useFetchChannelData from "../../custom_hooks/useFetchChannelData";
 import {
@@ -33,6 +33,8 @@ const VideoInfo = (props) => {
     ? ""
     : apiData?.items[0]?.snippet?.thumbnails?.default?.url;
 
+  const [showMore, setShowMore] = useState(false);
+
   const handleMouseOver = (text) => (e) => {
     // Create and position the tooltip
     const tooltip = document.createElement("div");
@@ -62,16 +64,23 @@ const VideoInfo = (props) => {
 
   const handleShowMore = () => {
     const descriptPara = document.getElementById("description");
-    descriptPara.classList = null;
+    if (showMore) {
+      descriptPara.classList.add("max-h-16");
+      descriptPara.classList.add("overflow-hidden");
+      setShowMore(false);
+    } else {
+      descriptPara.classList = null;
+      setShowMore(true);
+    }
   };
 
   return (
-    <div className="p-4 bg-black w-full flex flex-col gap-3">
+    <div className="p-4 bg-black  flex flex-col gap-3">
       <div>
         <h1 className="text-xl font-bold">{title}</h1>
       </div>
-      <div className="flex flex-col items-start lg:items-center justify-between lg:flex-row gap-2 w-screen">
-        <div className="flex gap-2 items-center justify-between w-[90%]  lg:justify-start lg:w-fit">
+      <div className="flex  items-start lg:items-center justify-between lg:flex-row gap-2">
+        <div className="flex gap-2 items-center  w-[90%]">
           <div className="flex items-center gap-2">
             <div>
               <img
@@ -93,7 +102,7 @@ const VideoInfo = (props) => {
             </button>
           </div>
         </div>
-        <div className="flex gap-5 items-center w-[100%]  overflow-scroll scrollbar-hide">
+        <div className="flex justify-end gap-5 items-center w-[100%]  overflow-scroll scrollbar-hide">
           <div className="flex">
             <div
               className="flex bg-gray-700 p-2 rounded-l-full hover:cursor-pointer min-w-max"
@@ -163,12 +172,12 @@ const VideoInfo = (props) => {
         <p className="max-h-16  overflow-hidden" id="description">
           {description}
         </p>
-        <button onClick={handleShowMore}>...show more</button>
+        <button onClick={handleShowMore}>
+          {showMore ? "show less" : "show more"}
+        </button>
       </div>
     </div>
   );
 };
 
 export default VideoInfo;
-
-
