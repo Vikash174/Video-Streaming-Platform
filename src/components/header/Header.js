@@ -98,19 +98,20 @@ const Header = () => {
 
       {showSearchSuggestion && (
         <div className="bg-black fixed  md:w-[450px] z-10 top-12 mx-auto left-0 right-0 text-white">
-          {searchQueryResult.map((searchQuery) => {
-            return (
-              <div
-                className="p-1 m-1 cursor-default hover:bg-gray-500"
-                onMouseDown={() => {
-                  navigate(`/results?search_query=${searchQuery}`);
-                }}
-              >
-                <FontAwesomeIcon icon={icon({ name: "magnifying-glass" })} />
-                <span className="ml-2 text-sm">{searchQuery}</span>
-              </div>
-            );
-          })}
+          {searchQueryResult !== null &&
+            searchQueryResult.map((searchQuery) => {
+              return (
+                <div
+                  className="p-1 m-1 cursor-default hover:bg-gray-500"
+                  onMouseDown={() => {
+                    navigate(`/results?search_query=${searchQuery}`);
+                  }}
+                >
+                  <FontAwesomeIcon icon={icon({ name: "magnifying-glass" })} />
+                  <span className="ml-2 text-sm">{searchQuery}</span>
+                </div>
+              );
+            })}
         </div>
       )}
     </>
