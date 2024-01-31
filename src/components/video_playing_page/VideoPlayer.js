@@ -13,7 +13,7 @@ const VideoPlayer = ({ videoUrl }) => {
   }, []);
 
   return (
-    <div className="aspect-w-16 aspect-h-9 h-[80vh]">
+    <div className="aspect-w-16 w-full aspect-h-9 h-[80vh]">
       <iframe
         className="w-full h-full "
         src={`https://www.youtube.com/embed/${searchParams.get(

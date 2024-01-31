@@ -35,7 +35,7 @@ const VideoCard = (props) => {
     <div className="max-w-md mx-auto  bg-black text-white overflow-hidden shadow-md hover:shadow-lg transition duration-300">
       <div>
         <img
-          className="w-full h-full object-fill rounded-lg"
+          className="w-full h-full object-cover max-h-[189px] rounded-lg"
           src={videoThumbnailURL}
           alt="video thumbnail"
         />
